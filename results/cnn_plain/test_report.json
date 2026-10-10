@@ -1,0 +1,33 @@
+{
+  "gpt": {
+    "precision": 1.0,
+    "recall": 0.75,
+    "f1-score": 0.8571428571428571,
+    "support": 20.0
+  },
+  "claude": {
+    "precision": 0.7307692307692307,
+    "recall": 0.95,
+    "f1-score": 0.8260869565217391,
+    "support": 20.0
+  },
+  "gemini": {
+    "precision": 0.8947368421052632,
+    "recall": 0.85,
+    "f1-score": 0.8717948717948718,
+    "support": 20.0
+  },
+  "accuracy": 0.85,
+  "macro avg": {
+    "precision": 0.8751686909581647,
+    "recall": 0.85,
+    "f1-score": 0.8516748951531561,
+    "support": 60.0
+  },
+  "weighted avg": {
+    "precision": 0.8751686909581645,
+    "recall": 0.85,
+    "f1-score": 0.851674895153156,
+    "support": 60.0
+  }
+}

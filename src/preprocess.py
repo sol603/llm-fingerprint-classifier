@@ -14,6 +14,13 @@ def tokenize(text):
     tokens = re.findall(r"\n|\w+|[^\w\s]", str(text).lower())
     return [NL if t == "\n" else t for t in tokens]
 
+def remove_formatting(text):
+    # RQ4 ablation: strip markdown and line breaks, keep only the words and normal punctuation
+    text = re.sub(r"^\s*[-*•]\s+", "", str(text), flags=re.MULTILINE)   # bullet markers at line start
+    text = re.sub(r"[#*`|>]", " ", text)                                  # markdown symbols
+    text = re.sub(r"\s+", " ", text)                                      # newlines -> single spaces
+    return text
+
 
 def get_tokens(row, mode):
     # mode decides what the classifier gets to see (RQ2)
@@ -23,8 +30,9 @@ def get_tokens(row, mode):
         return tokenize(row["response"])
     if mode == "both":
         return tokenize(row["prompt"]) + [SEP] + tokenize(row["response"])
+    if mode == "plain":
+        return tokenize(remove_formatting(row["response"]))
     raise ValueError(mode)
-
 
 def build_vocab(token_lists, min_freq=2):
     # built from the training set only, so val/test words don't leak in.
